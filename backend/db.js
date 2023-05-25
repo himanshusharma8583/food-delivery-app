@@ -13,10 +13,21 @@ const mongoDB = async () => {
         const fetched_data = await mongoose.connection.db.collection(
           "food_items"
         );
-        fetched_data.find({}).toArray(function (err, data) {
-          if (err) console.log(err);
-         global.food_items = data;
-        //  console.log(global.food_items);
+        fetched_data.find({}).toArray(async function (err, data) {
+          const foodCategory = await mongoose.connection.db.collection("foodCategory");
+        
+        foodCategory.find({}).toArray(function (err,categoryData){
+            if (err) console.log(err);
+           else{
+            global.food_items = data;
+            global.foodCategory = categoryData;
+
+           }
+        })
+        
+        
+         
+        
         });
       }
     }
