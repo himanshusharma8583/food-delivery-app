@@ -13,6 +13,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use('/api',require("./Routes/CreateUser"))
+app.use('/api',require("./Routes/DisplayData"))
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
