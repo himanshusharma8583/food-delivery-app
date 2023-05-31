@@ -23,7 +23,7 @@ export default function Home() {
 
     setFoodItem(response[0]);
     setFoodCategory(response[1]);
-    // console.log(response[0],response[1]);
+    
 
   }
 

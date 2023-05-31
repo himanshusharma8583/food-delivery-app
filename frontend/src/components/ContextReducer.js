@@ -16,13 +16,18 @@ switch(action.type){
         let arr = [...state]
         arr.find((food,index)=>{
             if(food.id === action.id){
-                console.log(food.qty, parseInt(action.qty), action.price + food.price)
+                console.log((food.qty), parseInt(action.qty), action.price + food.price)
+               
+                
             arr[index] = {...food, qty: parseInt(action.qty)+food.qty, price: action.price+food.price}
-            console.log(arr);
             }
+            console.log(action.qty);
             return arr
         })
             return arr
+            case "DROP":
+                let empArray = []
+                return empArray
         default:
             console.log("Error In Reducer");
 }

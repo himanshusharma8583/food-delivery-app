@@ -6,11 +6,12 @@ export default function Card(props) {
 
   let dispatch = useDispatchCart();
   let data = useCart();
-  const priceRef = useRef();
+  const priceRef = useRef(0);
   let options = props.options;
   let priceOptions = Object.keys(options);
   const [qty, setQty] = useState(1)
-  const [size, setSize] = useState("")
+  const [size, setSize] = useState()
+  
 
 
 
@@ -27,28 +28,37 @@ export default function Card(props) {
 
     if (food !== []) {
       if (food.size === size) {
-        await dispatch({ type: "UPDATE", id: props.foodItem._id, price: finalPrice, qty: qty })
+        await dispatch({ type: "UPDATE", id: props.foodItem._id, price: finalPrice, qty:qty })
+        
         
         return
 
       }
       else if (food.size !== size) {
         await dispatch({ type: "ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size })
-        // console.log(data);
+        
+        parseInt(qty)
+
+        
+
         return
       }
 return
     }
 
     await dispatch({ type: "ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size })
+    parseInt(qty)
+
+  
 
   }
  
-  const finalPrice = qty * parseInt(options[size]);
-  console.log(typeof(finalPrice));
+ 
   useEffect(() => {
     setSize(priceRef.current.value)
   }, [])
+  let finalPrice = qty * parseInt(options[size]);
+
   return (
     <div>
       <div className="card mt-3" style={{ width: "18rem" }}>

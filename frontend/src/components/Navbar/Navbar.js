@@ -9,7 +9,7 @@ import { useCart } from "../../components/ContextReducer";
 
 const Navbar = () => {
   
-  let data = useCart();
+  
 
 
   const [cartView, setCartView] = useState(false)
@@ -21,7 +21,7 @@ const Navbar = () => {
   }
 
 
-
+let data = useCart();
 
 
   return (

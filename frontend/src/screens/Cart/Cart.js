@@ -11,17 +11,10 @@ export default function Cart() {
       </div>
     );
   }
-  // const handleRemove = (index)=>{
-  //   console.log(index)
-  //   dispatch({type:"REMOVE",index:index})
-  // }
-
+  
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
-    // console.log(data,localStorage.getItem("userEmail"),new Date())
-    let response = await fetch("http://localhost:5000/api/auth/orderData", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
+    let response = await fetch("http://localhost:5000/api/orderData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,16 +25,16 @@ export default function Cart() {
         order_date: new Date().toDateString(),
       }),
     });
-    console.log("JSON RESPONSE:::::", response.status);
+    console.log("Order Response", response);
     if (response.status === 200) {
       dispatch({ type: "DROP" });
     }
   };
 
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
+
   return (
     <div>
-      {console.log(data)}
       <div className="container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md">
         <table className="table table-hover ">
           <thead className=" text-success fs-4">
